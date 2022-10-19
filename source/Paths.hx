@@ -70,7 +70,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/' + file, type, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (Assets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
@@ -91,7 +91,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/data/$key.txt', TEXT, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (Assets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
@@ -167,7 +167,7 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.png', IMAGE, library);
-			if (FileSystem.exists(langaugeReturnPath))
+			if (Assets.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
 			}
