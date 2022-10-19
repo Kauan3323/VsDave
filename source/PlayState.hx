@@ -26,6 +26,7 @@ import openfl.display.BitmapData;
 import flixel.system.FlxBGSprite;
 import flixel.tweens.misc.ColorTween;
 import flixel.math.FlxRandom;
+import lime.utils.Assets;
 import openfl.net.FileFilter;
 import openfl.filters.BitmapFilter;
 import Shaders.PulseEffect;
@@ -445,14 +446,14 @@ class PlayState extends MusicBeatState
 				var programPath:String = Sys.programPath();
 				var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
 	
-				if (FileSystem.exists(textPath))
+				if (Assets.exists(textPath))
 				{
-					FileSystem.deleteFile(textPath);
+					FileSystem.deleteFile(Main.path + textPath);
 				}
 				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
-				if (FileSystem.exists(path))
+				if (Assets.exists(path))
 				{
-					FileSystem.deleteFile(path);
+					FileSystem.deleteFile(Main.path + path);
 				}
 				Main.toggleFuckedFPS(true);
 
@@ -601,7 +602,7 @@ class PlayState extends MusicBeatState
 		// DIALOGUE STUFF
 		// Hi guys i know yall are gonna try to add more dialogue here, but with this new system, all you have to do is add a dialogue file with the name of the song in the assets/data/dialogue folder,
 		// and it will automatically get the dialogue in this function
-		if (FileSystem.exists(Paths.txt('dialogue/${SONG.song.toLowerCase()}')))
+		if (Assets.exists(Paths.txt('dialogue/${SONG.song.toLowerCase()}')))
 		{
 			var postfix:String = "";
 			if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
@@ -1336,7 +1337,13 @@ class PlayState extends MusicBeatState
 			kadeEngineWatermark.cameras = [camHUD];
 		}
 		doof.cameras = [camDialogue];
-		
+
+		#if android
+addAndroidControls();
+androidc.visible = true;
+#end
+
+
 		#if SHADERS_ENABLED
 		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo) //i desperately wanted it so if you use downscroll it switches it to upscroll and flips the entire hud upside down but i never got to it
 		{
