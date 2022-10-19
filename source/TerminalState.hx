@@ -331,6 +331,10 @@ class TerminalState extends MusicBeatState
 
         add(displayText);
 
+	    #if android
+addVirtualPad(NONE, B);
+#end
+	
         super.create();
     }
 
@@ -445,7 +449,7 @@ class TerminalState extends MusicBeatState
         {
             curCommand = "";
         }
-        if (FlxG.keys.justPressed.ESCAPE)
+        if (controls.BACK)
         {
             Main.fps.visible = !FlxG.save.data.disableFps;
             FlxG.switchState(new MainMenuState());
