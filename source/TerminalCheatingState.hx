@@ -62,12 +62,14 @@ class TerminalCheatingState extends FlxUIState
       add(typedText);
 
       startTypingText();
-
+           #if android
+addVirtualPad(NONE, A);
+#end
 		super.create();
 	}
 	override function update(elapsed:Float)
 	{
-      if (FlxG.keys.justPressed.ENTER && FlxG.save.data.enteredTerminalCheatingState)
+      if (controls.ACCEPT && FlxG.save.data.enteredTerminalCheatingState)
       {
          FlxG.camera.setFilters([]);
 			onCommandsComplete();
